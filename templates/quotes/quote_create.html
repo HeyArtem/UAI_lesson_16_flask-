@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Create quote
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Создаем новую цитату</h1>
+
+        <form action="create" method="POST" class="alert alert-succes">            
+            <p><input type="text" name="author" placeholder="Впишите автора"></p>
+            <p><input type="text" name="text" placeholder="Впишите текст цитаты"></p>
+            <p><input type="submit" value="Отправить" class="btn btn-warning"></p>
+
+        </form>
+        <br>
+        <br>
+        <div class="p-3 text-bg-secondary" >
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+                </a>
+        
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/quotes" class="btn btn-warning">Все цитаты</a></li>
+                    <li><a class="btn btn-secondary"></a></li>
+                    <li><a href="/quotes/digital" class="btn btn-warning">Общее количество цитат</a></li>
+                    <li><a class="btn btn-secondary"></a></li>
+                    <li><a href="/quotes/random" class="btn btn-warning">Случайная цитата</a></li>                
+                    <li><a class="btn btn-secondary"></a></li>
+                    <li><a href="/quotes/input_id" class="btn btn-warning">Вывод цитаты по id</a></li>
+                    <li><a class="btn btn-secondary"></a></li>
+                    <li><a href="/quotes/create" class="btn btn-warning">Создание цитаты</a></li>
+                    <li><a class="btn btn-secondary"></a></li>                    
+                </ul>
+            </div>
+        </div>
+    </div>    
+{% endblock %}

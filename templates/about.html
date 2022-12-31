@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Об авторе
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h3> Об авторе сайта: </h3>
+        <div class="alert alert-info">
+            <span><h2><b>{{about_me.name}} {{about_me.surname}}</b></h2></b></span>
+            <span><h2>Telegram: {{about_me.telegram}}</h2></span>
+            <span><h2>Mobile phone: {{about_me.mobile_phone}}</h2></span>
+            <span><h2>Email: {{about_me.email}}</h2></span>
+            <span><h2>Website: {{about_me.website}}</h2></span>
+            
+            
+            
+
+            
+        </div> 
+    </div>
+    
+{% endblock %}
