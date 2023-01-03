@@ -55,12 +55,11 @@ class Article(db.Model):
     date_art = db.Column(db.DateTime, default=datetime.utcnow)
 
     # когда буду выбирать объект, то буду получать и объект и id
-    def __repr__(self) -> str:
-        # return '<Article %r>' % self.id     # !! переделать на нов f row ????????
-        return Article   # !! переделать на нов f row ????????
+    def __repr__(self) -> str:        
+        return Article
 
 
-# создание поста (POST-принятие данных из формы) а если GET отправка на страницу создания????????
+# создание поста (POST-принятие данных из формы) а если GET отправка на страницу
 @app.route("/create_article", methods=["POST", "GET"])
 def create_article():
     print(url_for("create_article"))
@@ -78,8 +77,7 @@ def create_article():
         try:
             db.session.add(article) #добавляю
             db.session.commit() #сохраняю
-            return redirect("/posts")   #переадресовываю пользователя на главную страницу
-            # return redirect("/")   
+            return redirect("/posts")   #переадресовываю пользователя на главную страницу            
         except:
             return "При добавлении статьи произошла ошибка"
 
@@ -96,25 +94,22 @@ def all_posts():
     # articles = Article.query.all()
 
     # все посты с сортировкой п дате от свежих, к старым
-    articles = Article.query.order_by(Article.date_art.desc()).all()    
-    
-    # return f"Hello, World! & Привет Артем!"
-    # return render_template("posts_test.html", articles=articles)
+    articles = Article.query.order_by(Article.date_art.desc()).all()
+
     return render_template("/article_posts/posts.html", articles=articles)
 
 
 # детальный вывод поста
 @app.route("/posts/<int:id>")
-def post_detail(id):
-    # print(url_for("post_detail"))
+def post_detail(id):    
     article = Article.query.get(id)
+
     return render_template("/article_posts/post_detail.html", article=article)
 
 
 # удаление поста
 @app.route("/posts/<int:id>/delete")
-def post_delete(id):
-    # print(url_for("post_delete"))
+def post_delete(id):    
     article = Article.query.get_or_404(id)  # в случае не нахождения поста вернет ошибку 404
 
     try:
@@ -127,8 +122,7 @@ def post_delete(id):
 
 # редактирование поста
 @app.route("/posts/<int:id>/update", methods=["POST", "GET"])
-def post_update(id):
-    # print(url_for("/posts/<int:id>/update"))
+def post_update(id):    
     article = Article.query.get(id)
 
     if request.method == "POST":
@@ -141,6 +135,7 @@ def post_update(id):
             return redirect("/posts")
         except:
             return "При редактировании поста произошла ошибка"
+
     else:        
         return render_template("/article_posts/post_update.html", article=article)
 
@@ -175,14 +170,6 @@ quotes = [
 @app.route("/quotes")
 def all_quotes():
     print(url_for("all_quotes"))
-    # quotes_sort = quotes.order_by(quotes.id.desc()).all()    
-    # quotes_sort = quotes.order_by(quotes.id.desc()).all()    
-    # quotes_sort = quotes.sort(int(quotes["id"]))
-    # quotes_sort = quotes.sort(key=lambda dictionary: dictionary["id"])
-    # quotes_sort = quotes.sort(quotes.)
-    
-    # return quotes_sort
-
     return render_template("/quotes/quotes.html", quotes=quotes)
 
 
@@ -214,28 +201,21 @@ def quote_input_form_id():
 
     return render_template("/quotes/quote_input_id.html")
 
+
 # форма для ввода цитаты по id
 @app.route("/quotes/response_id_form", methods=["POST", "GET"])
 def input_id_form(): 
 
     if request.method == "POST":
         id_quote = int(request.form["id_qu"])
-        print(f" [!] id_quote: {id_quote}")
 
         for quote in quotes:
-            print(f" [!] Перебор цитат: {quote}")
-
             if quote["id"] == id_quote:
-                print(f" [!] quote['id']: {quote['id']}")
-                
                 result = quote['id']
-                print(f" [!] result: {result}")
-
                 return render_template("/quotes/quote_id.html", quote=quote)
 
         else:
             text = "Цитаты с таким id нет 😕"
-
             return render_template("/quotes/quotes_no.html", text=text) 
     
 
@@ -243,7 +223,6 @@ def input_id_form():
 @app.route("/quotes/create", methods=["POST", "GET"])
 def new_quote():
     print(url_for("new_quote")) 
-    # return render_template("quote_create.html")
     
     # принимаю данные из формы
     if request.method == "POST":
@@ -258,49 +237,24 @@ def new_quote():
             "text": text
         }
         quotes.append(new_quote)
+
         try:
-            # return render_template("quotes_new.html", new_quotes=new_quotes)
-            return redirect("/quotes") # переадресовываю на страницу со всеми цитатами
-            # return new_quote
+            return redirect("/quotes") # переадресовываю на страницу со всеми цитатами            
         except:
             return "При добавлении цитаты произошла ошибка"
 
     else:
-        return render_template("/quotes/quote_create.html")
-        # return "Hui"
-    # http://localhost:5000/quotes/create
+        return render_template("/quotes/quote_create.html")        
 
 
 # удаление цитаты
-# @app.route("/quotes/<int:id>/delete", methods=["DELETE"])
 @app.route("/quotes/<int:id>/delete")
-def delete_quotes(id):
-    # print(url_for("delete_quotes"))
-    print(" [!] start delete_quotes")   
-    
+def delete_quotes(id):    
     for quote in quotes:
         if int(id) == quote["id"]:
             quotes.remove(quote)
-            # return f"Цитата {id} удалена"
+            
             return redirect("/quotes")
-        
-
-
-
-@app.route("/hui")
-def hui_tebe():
-    x = "hui tebe"
-    return render_template("/test_fol/hui.html", data=x)
-
-
-
-
-
-
-
-
-
-
 
 
 def main():
