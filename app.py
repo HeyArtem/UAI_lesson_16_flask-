@@ -3,6 +3,9 @@ import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import random
+# from headhunter import test_hh
+from headhunter import main as start_headhunter
+# from headhunter import test_hh
 
 
 app = Flask(__name__)
@@ -255,6 +258,42 @@ def delete_quotes(id):
             quotes.remove(quote)
             
             return redirect("/quotes")
+
+
+# Тестовый запуск 
+@app.route("/hh")
+def hh():
+
+    print(f"\n    [!] функция def hh() внутри app.py запущена")
+    
+    # # res = start_headhunter()
+    # print(f"\n    [!] этап res пройден")
+    # print(f"\n  [!] внутри функции def hh() распечатываю res: {res}")
+    # print(f"\n  [!] пробую распечатать результат test_hh() со страницы headhunter.py: {test_hh()}")
+    # # return render_template("hh.html", res=res)
+   
+
+    # работа с тестовой функцией
+    res = start_headhunter()
+    print(f"\n    [!] этап res пройден")
+    print(res)
+    print(type(res))
+
+    # # работа со словарем
+    # res = start_headhunter()
+    # print(f"\n  [!] пробую распечатать результат test_hh() со страницы headhunter.py: {res}")
+
+    
+
+    # print(f"{res[0]}")
+
+    # search_word = res[0]
+    # res_digital = res[1]
+    # print(f"\n  [!] внутри функции def hh() распечатываю search_word: {search_word}\n res_digital: {res_digital}")
+    return "def hh completed!"
+
+    
+
 
 
 def main():
