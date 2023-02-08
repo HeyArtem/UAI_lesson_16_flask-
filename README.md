@@ -112,9 +112,13 @@ oсновной фаил, который нужно запускать [$ python
 <hr>
 
 
+![alt-текст](https://github.com/HeyArtem/UAI_lesson_16_flask-/blob/main/screenshots/Screenshot%20from%202023-02-08%2014-05-57.png "screenshot_1")
 
-```
-![alt-текст](https://github.com/HeyArtem/UAI_lesson_16_flask-/blob/main/screenshots/Screenshot%20from%202023-02-08%2014-05-57.png "Exemple 1")
+![alt-а этот где?](https://github.com/HeyArtem/UAI_lesson_16_flask-/blob/main/screenshots/Screenshot%20from%202023-02-08%2014-08-06.png "screenshot_2")
+
+![alt-текст](https://github.com/HeyArtem/UAI_lesson_16_flask-/blob/main/screenshots/Screenshot%20from%202023-02-08%2014-08-23.png "screenshot_3")
+
+![alt-текст](https://github.com/HeyArtem/UAI_lesson_16_flask-/blob/main/screenshots/Screenshot%20from%202023-02-08%2014-09-23.png "screenshot_4")
 
 
 
