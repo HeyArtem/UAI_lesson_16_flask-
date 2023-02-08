@@ -1,15 +1,28 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Об авторе
+    Create article
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h3> Тестирую функцию hh </h3>
-        <div class="alert alert-info">
-            <span><h2><b>{{res}}</b></h2></b></span>
-        </div> 
-    </div>
-    
+    <div class="container mt-5">
+        <h1>Введи вакансию и город</h1>
+        <form method="post">
+            <input type="text" placeholder="Введи вакансию и город" name="data_user" id="data_user" class="form-control"><br>            
+            <input type="submit" class="btn btn-success" value="Поиск"><br>
+        </form>
+        <br>
+        {% if skills|length != 0 %}
+        <div class="vacancy-info">
+            <h3>Средняя зарплата - {{ avg_salary }} руб.</h3>
+            <br>
+            <h3>Требуемые навыки: </h3>
+            {% for item in skills %}
+                {% for skill, percent in item.items() %}
+                    <h6>{{ skill }} - {{ percent }}%</h6>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>    
 {% endblock %}

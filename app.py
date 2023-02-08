@@ -3,9 +3,7 @@ import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import random
-# from headhunter import test_hh
-from headhunter import main as start_headhunter
-# from headhunter import test_hh
+from headhunter import data_vacancies, get_salar_average, get_skills
 
 
 app = Flask(__name__)
@@ -39,7 +37,8 @@ def hello_world():
     print(url_for("hello_world"))
     data = "Hello, World! & Привет Артем!"
 
-    return render_template ("hello.html", data= data)
+    # return render_template ("hello.html", data= data)
+    return "Hello, World! & Привет Артем!"
 
 
 # устанавливаю значение БД с которой буду работать
@@ -173,7 +172,7 @@ quotes = [
 @app.route("/quotes")
 def all_quotes():
     print(url_for("all_quotes"))
-    return render_template("/quotes/quotes.html", quotes=quotes)
+    return render_template("/quotes/quotes.html", quotes=quotes[::-1])
 
 
 # вывод общего числа цитат
@@ -259,38 +258,29 @@ def delete_quotes(id):
             
             return redirect("/quotes")
 
+"""
+Задача
+-Принять от пользователя, на сайте Город и вакансию
+-Отправить их в функции
+- Вывести результат (средн. зп, навыки) на сайте
+"""
 
-# Тестовый запуск 
-@app.route("/hh")
+
+# Создаю прием запроса
+@app.route("/hh", methods=["POST", "GET"])
 def hh():
-
-    print(f"\n    [!] функция def hh() внутри app.py запущена")
-    
-    # # res = start_headhunter()
-    # print(f"\n    [!] этап res пройден")
-    # print(f"\n  [!] внутри функции def hh() распечатываю res: {res}")
-    # print(f"\n  [!] пробую распечатать результат test_hh() со страницы headhunter.py: {test_hh()}")
-    # # return render_template("hh.html", res=res)
-   
-
-    # работа с тестовой функцией
-    res = start_headhunter()
-    print(f"\n    [!] этап res пройден")
-    print(res)
-    print(type(res))
-
-    # # работа со словарем
-    # res = start_headhunter()
-    # print(f"\n  [!] пробую распечатать результат test_hh() со страницы headhunter.py: {res}")
+    # принимаю данные из формы
+    if request.method == "POST":
+        data_user = request.form["data_user"]     
+        data_vacancies(data_user)
+        avg_salary = get_salar_average()
+        skills = get_skills()
+        return render_template("hh.html", avg_salary=avg_salary, skills=skills)
+    else:
+        skills = []
+        return render_template("hh.html", skills=skills)
 
     
-
-    # print(f"{res[0]}")
-
-    # search_word = res[0]
-    # res_digital = res[1]
-    # print(f"\n  [!] внутри функции def hh() распечатываю search_word: {search_word}\n res_digital: {res_digital}")
-    return "def hh completed!"
 
     
 

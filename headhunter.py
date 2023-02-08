@@ -2,37 +2,33 @@ import requests
 import os
 import json
 
-def test_hh():
-    print(f"\n [!] Активирована функция def test_hh внутри страницы headhunter.py")
-    search = input("Введите число: ")
+# def test_hh():
+#     print(f"\n [!] Активирована функция def test_hh внутри страницы headhunter.py")
+#     search = input("Введите число: ")
     
-    a = 10 * int(search)
-    print(f"\n    [!] Принт результата test_hh(): {a}")
+#     a = 10 * int(search)
+#     print(f"\n    [!] Принт результата test_hh(): {a}")
     
-    # почему не передаются данные в кортеже?
-    tuple_data = (f"{search}", f"{a}")
-    print(f"\n    [!] Принт внутри test_hh type tuple_data: {type(tuple_data)}")
-    print(f"\n    [!] Принт внутри test_hh tuple_data[0]: {tuple_data[0]}")
-    print(f"\n    [!] Принт внутри test_hh tuple_data[1]: {tuple_data[1]}")
-    return tuple_data
+#     # почему не передаются данные в кортеже?
+#     tuple_data = (f"{search}", f"{a}")
+#     print(f"\n    [!] Принт внутри test_hh type tuple_data: {type(tuple_data)}")
+#     print(f"\n    [!] Принт внутри test_hh tuple_data[0]: {tuple_data[0]}")
+#     print(f"\n    [!] Принт внутри test_hh tuple_data[1]: {tuple_data[1]}")
+#     return tuple_data
 
-    # # пробую передать денные в словаре
-    # dict_data = {}
-    # dict_data['search'] = search
-    # dict_data['res'] = a
+#     # # пробую передать денные в словаре
+#     # dict_data = {}
+#     # dict_data['search'] = search
+#     # dict_data['res'] = a
 
-    # print(f"\n    [!] Принт внутри test_hh dict_data: {dict_data}")
-    # print(f"\n    [!] Принт внутри test_hh type dict_data: {type(dict_data)}")
-    # return dict_data
+#     # print(f"\n    [!] Принт внутри test_hh dict_data: {dict_data}")
+#     # print(f"\n    [!] Принт внутри test_hh type dict_data: {type(dict_data)}")
+#     # return dict_data
 
 
 
 # Сбор вакансий
-def data_vacancies():
-    # Ввод поисковых слов
-    search = input("Введите вакансию и город: ")
-    # search = "Pytnon Челябинск"
-
+def data_vacancies(search):
     # Поисковый запрос разделил и склеил союзом "AND"
     data = search.split()    
     search = " AND ".join(data)
@@ -68,8 +64,6 @@ def data_vacancies():
     # Информацию из "vacancies" записываю в фаил "vacancies.json"
     with open("f_data/vacancies.json", mode="w") as file:
         json.dump(vacancies, file, indent=4, ensure_ascii=False)
-    
-    print(f"\n    [!]Запрос: {search}\n Всего страниц: {pages}\n")
     
     return f"\n [!] Вакансии по запросу: {search}, записаны в фаил: vacancies.json"
 
@@ -107,19 +101,19 @@ def get_salar_average(file_path="/home/heyartem/PycharmProjects/uai_lesson_16_fl
                 min_sal = int(vac["salary"]["from"])
                 max_sal = min_sal
 
-        print(f"\n    [!] Вычисление средней зп: {max_sal} & {min_sal}\n Средняя зп : {((max_sal + min_sal) / 2)}\n")
+        # print(f"\n    [!] Вычисление средней зп: {max_sal} & {min_sal}\n Средняя зп : {((max_sal + min_sal) / 2)}\n")
 
         # Если сумма Максимальной и Минимальной зарплат > 0, высчитываю среднюю зарплату
         if (min_sal + max_sal) / 2 > 0:            
             salary_average.append((min_sal + max_sal) / 2)
 
-            print(f"\n    [!] salary_average: {salary_average}\n")
+            # print(f"\n    [!] salary_average: {salary_average}\n")
 
     # Вывожу среднюю зп, поделил сумму зарплат на их количество
     total_salaty_average = round(sum(salary_average) / len(salary_average), 2)
     # return "get_salart_average is ok!"
     res = f"\n Средняя зп составляет: {int(total_salaty_average)}" 
-    print("\n [!] А так? ", total_salaty_average)
+    # print("\n [!] А так? ", total_salaty_average)
     return int(total_salaty_average)
     # return res
 
@@ -208,9 +202,9 @@ def get_skills(file_path="/home/heyartem/PycharmProjects/uai_lesson_16_flask/f_d
 
 # print(data_vacancies())
 # print(get_salar_average())
-# print(get_skills())
+print(get_skills())
 
-def main():
+# def main():
     # data_vacancies()
     # print(f"Средняя зп: {get_salar_average} рублей.")
 
@@ -220,4 +214,4 @@ def main():
     #     for k,v in item.items():
     #         print(f"{k.title()}: {v}%")
     # print(test_hh())
-    test_hh()
+    # test_hh()
