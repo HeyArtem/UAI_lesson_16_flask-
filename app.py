@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template, url_for, redirect, abort
-import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import random
@@ -37,8 +36,8 @@ def hello_world():
     print(url_for("hello_world"))
     data = "Hello, World! & Привет Артем!"
 
-    # return render_template ("hello.html", data= data)
-    return "Hello, World! & Привет Артем!"
+    return render_template ("hello.html", data= data)
+    # return "Hello, World! & Привет Артем!"
 
 
 # устанавливаю значение БД с которой буду работать
@@ -61,7 +60,7 @@ class Article(db.Model):
         return Article
 
 
-# создание поста (POST-принятие данных из формы) а если GET отправка на страницу
+# создание статьи (POST-принятие данных из формы) а если GET отправка на страницу
 @app.route("/create_article", methods=["POST", "GET"])
 def create_article():
     print(url_for("create_article"))
@@ -87,7 +86,7 @@ def create_article():
         return render_template("/article_posts/create_article.html")
     
 
-# вывод всех постов
+# вывод всех статей
 @app.route("/posts")
 def all_posts():
     print(url_for("all_posts"))
@@ -101,7 +100,7 @@ def all_posts():
     return render_template("/article_posts/posts.html", articles=articles)
 
 
-# детальный вывод поста
+# детальный вывод статьи
 @app.route("/posts/<int:id>")
 def post_detail(id):    
     article = Article.query.get(id)
@@ -109,7 +108,7 @@ def post_detail(id):
     return render_template("/article_posts/post_detail.html", article=article)
 
 
-# удаление поста
+# удаление статьи
 @app.route("/posts/<int:id>/delete")
 def post_delete(id):    
     article = Article.query.get_or_404(id)  # в случае не нахождения поста вернет ошибку 404
@@ -122,7 +121,7 @@ def post_delete(id):
         return "При удалении поста произошла ошибка"
 
 
-# редактирование поста
+# редактирование статьи
 @app.route("/posts/<int:id>/update", methods=["POST", "GET"])
 def post_update(id):    
     article = Article.query.get(id)
@@ -172,6 +171,8 @@ quotes = [
 @app.route("/quotes")
 def all_quotes():
     print(url_for("all_quotes"))
+
+    # при выводе, сортировка в обратном порядке по id
     return render_template("/quotes/quotes.html", quotes=quotes[::-1])
 
 
@@ -196,7 +197,7 @@ def quotes_random():
     return render_template("/quotes/quotes_random.html", quote_random=quote_random)
 
 
-# форма ввода id
+# форма ввода id цитаты для дальнейшего ее вывода
 @app.route("/quotes/input_id")
 def quote_input_form_id():
     print(url_for("quote_input_form_id"))
@@ -204,16 +205,15 @@ def quote_input_form_id():
     return render_template("/quotes/quote_input_id.html")
 
 
-# форма для ввода цитаты по id
+# форма для вывода цитаты по id
 @app.route("/quotes/response_id_form", methods=["POST", "GET"])
 def input_id_form(): 
 
     if request.method == "POST":
-        id_quote = int(request.form["id_qu"])
+        id_quote = int(request.form["id_qu"])        
 
         for quote in quotes:
-            if quote["id"] == id_quote:
-                result = quote['id']
+            if quote["id"] == id_quote:                
                 return render_template("/quotes/quote_id.html", quote=quote)
 
         else:
@@ -258,15 +258,9 @@ def delete_quotes(id):
             
             return redirect("/quotes")
 
-"""
-Задача
--Принять от пользователя, на сайте Город и вакансию
--Отправить их в функции
-- Вывести результат (средн. зп, навыки) на сайте
-"""
 
-
-# Создаю прием запроса
+# Пример 3, работа с api head hunter
+# Фома ввода города и вакансии
 @app.route("/hh", methods=["POST", "GET"])
 def hh():
     # принимаю данные из формы
@@ -275,15 +269,10 @@ def hh():
         data_vacancies(data_user)
         avg_salary = get_salar_average()
         skills = get_skills()
-        return render_template("hh.html", avg_salary=avg_salary, skills=skills)
+        return render_template("/hh/hh.html", avg_salary=avg_salary, skills=skills)
     else:
         skills = []
-        return render_template("hh.html", skills=skills)
-
-    
-
-    
-
+        return render_template("/hh/hh.html", skills=skills)
 
 
 def main():

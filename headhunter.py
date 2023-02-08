@@ -2,30 +2,6 @@ import requests
 import os
 import json
 
-# def test_hh():
-#     print(f"\n [!] Активирована функция def test_hh внутри страницы headhunter.py")
-#     search = input("Введите число: ")
-    
-#     a = 10 * int(search)
-#     print(f"\n    [!] Принт результата test_hh(): {a}")
-    
-#     # почему не передаются данные в кортеже?
-#     tuple_data = (f"{search}", f"{a}")
-#     print(f"\n    [!] Принт внутри test_hh type tuple_data: {type(tuple_data)}")
-#     print(f"\n    [!] Принт внутри test_hh tuple_data[0]: {tuple_data[0]}")
-#     print(f"\n    [!] Принт внутри test_hh tuple_data[1]: {tuple_data[1]}")
-#     return tuple_data
-
-#     # # пробую передать денные в словаре
-#     # dict_data = {}
-#     # dict_data['search'] = search
-#     # dict_data['res'] = a
-
-#     # print(f"\n    [!] Принт внутри test_hh dict_data: {dict_data}")
-#     # print(f"\n    [!] Принт внутри test_hh type dict_data: {type(dict_data)}")
-#     # return dict_data
-
-
 
 # Сбор вакансий
 def data_vacancies(search):
@@ -99,15 +75,11 @@ def get_salar_average(file_path="/home/heyartem/PycharmProjects/uai_lesson_16_fl
             # Если в разделе "salary", есть подраздел "from", но нет подраздела "to"
             elif vac["salary"]["from"] and not vac["salary"]["to"]:
                 min_sal = int(vac["salary"]["from"])
-                max_sal = min_sal
-
-        # print(f"\n    [!] Вычисление средней зп: {max_sal} & {min_sal}\n Средняя зп : {((max_sal + min_sal) / 2)}\n")
+                max_sal = min_sal        
 
         # Если сумма Максимальной и Минимальной зарплат > 0, высчитываю среднюю зарплату
         if (min_sal + max_sal) / 2 > 0:            
-            salary_average.append((min_sal + max_sal) / 2)
-
-            # print(f"\n    [!] salary_average: {salary_average}\n")
+            salary_average.append((min_sal + max_sal) / 2)            
 
     # Вывожу среднюю зп, поделил сумму зарплат на их количество
     total_salaty_average = round(sum(salary_average) / len(salary_average), 2)
@@ -158,7 +130,7 @@ def get_skills(file_path="/home/heyartem/PycharmProjects/uai_lesson_16_flask/f_d
     # print("\nПривели к нижнему регистру: ", lower_case)
 
     # Вторичная зачистка. Удаляю разные союзы, предлоги, неинформативные слова
-    symbols_2 = ['и', 'знание', 'с', 'на', 'работы', 'в', 'к', 'and', 'хорошее', 'языках', 'отличное', 'имеете' 'имеете', 'использования' 'приложений', 'образование',  'писать', 'автоматизации', 'разработки', 'или', 'программирования', 'данных', 'понимание', 'умение', 'от', '-', 'знания', 'лет', 'навыки', 'языков', 'владение', 'будет', 'написания', 'уверенное', 'уровне', 'для', 'по', 'принципов', 'из', 'плюсом', 'желательно', 'работать', 'высшее', '3', 'языка', 'r', 'не',  'скриптов',  'experience', 'систем', 'как', 'желание', 'года', 'базовые', 'in', 'анализа', 'мы', 'вы', 'гибкость', 'под', 'есть', 'если', 'приветствуется', 'одного'] 
+    symbols_2 = ['и', 'знание', 'основ', 'с', 'на', 'работы', 'в', 'к', 'также', 'and', 'хорошее', 'языках', 'отличное', 'имеете' 'имеете', 'использования' 'приложений', 'образование',  'писать', 'автоматизации', 'разработки', 'или', 'программирования', 'данных', 'понимание', 'умение', 'от', '-', 'знания', 'лет', 'навыки', 'языков', 'владение', 'будет', 'написания', 'уверенное', 'уровне', 'для', 'по', 'принципов', 'из', 'плюсом', 'желательно', 'работать', 'высшее', '3', 'языка', 'r', 'не',  'скриптов',  'experience', 'систем', 'как', 'желание', 'года', 'базовые', 'in', 'анализа', 'мы', 'вы', 'гибкость', 'под', 'есть', 'если', 'приветствуется', 'одного'] 
 
     for word in range(len(lower_case)):
         for symbol in symbols_2:
@@ -202,7 +174,7 @@ def get_skills(file_path="/home/heyartem/PycharmProjects/uai_lesson_16_flask/f_d
 
 # print(data_vacancies())
 # print(get_salar_average())
-print(get_skills())
+# print(get_skills())
 
 # def main():
     # data_vacancies()

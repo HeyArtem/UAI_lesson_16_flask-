@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Create article
+    Работа c hh
 {% endblock %}
 
 {% block body %}
     <div class="container mt-5">
         <h1>Введи вакансию и город</h1>
         <form method="post">
-            <input type="text" placeholder="Введи вакансию и город" name="data_user" id="data_user" class="form-control"><br>            
+            <input type="text" placeholder="Введи вакансию и город. Например: Python Челябинск" name="data_user" id="data_user" class="form-control"><br>            
             <input type="submit" class="btn btn-success" value="Поиск"><br>
         </form>
         <br>
+        <hr>
         {% if skills|length != 0 %}
         <div class="vacancy-info">
             <h3>Средняя зарплата - {{ avg_salary }} руб.</h3>
@@ -24,5 +25,8 @@
             {% endfor %}
         </div>
         {% endif %}
-    </div>    
+        <hr>
+        <br>
+    </div>  
+      
 {% endblock %}
