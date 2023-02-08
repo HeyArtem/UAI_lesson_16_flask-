@@ -1,7 +1,7 @@
 # **Веб-сайт на Flask. <br/>Home work for UAI, lesson 16.**
 
 
-![alt-текст](https://github.com/HeyArtem/UAI_lesson_15_tgbot_scraping/blob/master/picture_for_readme/main.png "Текст заголовка логотипа 1")
+![alt-текст](https://github.com/HeyArtem/UAI_lesson_16_flask-/blob/main/screenshots/banner.png "Текст заголовка логотипа 1")
 
 
 
@@ -18,7 +18,7 @@
 <hr>
 
 ## **Описание:**
-## Проект состоит из трех частей:
+**Проект состоит из трех частей:**
 
 I часть Articles (Статьи) <br/>
 Здесь я создаю базу данных и предлагаю пользователью:
@@ -114,10 +114,7 @@ oсновной фаил, который нужно запускать [$ python
 
 
 ```
-![alt-текст](https://github.com/HeyArtem/UAI_lesson_15_tgbot_scraping/blob/master/picture_for_readme/1.png "Exemple 1")
-![alt-НЕтекст](https://github.com/HeyArtem/UAI_lesson_15_tgbot_scraping/blob/master/picture_for_readme/2.png "Exemple 2")
-![alt-текст](https://github.com/HeyArtem/UAI_lesson_15_tgbot_scraping/blob/master/picture_for_readme/3.png "Exemple 3")
-![alt-текст](https://github.com/HeyArtem/UAI_lesson_15_tgbot_scraping/blob/master/picture_for_readme/4.png "Exemple 4")
-![alt-текст](https://github.com/HeyArtem/UAI_lesson_15_tgbot_scraping/blob/master/picture_for_readme/5.png "Exemple 5")
+![alt-текст](https://github.com/HeyArtem/UAI_lesson_16_flask-/blob/main/screenshots/Screenshot%20from%202023-02-08%2014-05-57.png "Exemple 1")
+
 
 
